@@ -1,10 +1,27 @@
-#include main.h
+#include "main.h"
 
-printer print[] = {
-	{"c", printc},
-	{"s", prints}
-}
+/**
+  *get_func - returns pointer to function.
+  *@c: character to be used to find pointer function.
+  *Return: pointer to function or NULL.
+  */
 
-void (*get_op(char *c))(va_arg arg)
+int (*get_op(char *c))(va_arg arg)
 {
+	printer print[] = {
+		{"c", print_c},
+		{"s", print_s}
+	}
+	
+	int i = 0;
+
+
+	while (print[i].specifier != '\0')
+	{
+		if (print[i].specifier == c)
+			return (print[i].print);
+		i++;
+	}
+
+	return (NULL);
 }
